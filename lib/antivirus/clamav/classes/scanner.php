@@ -265,6 +265,8 @@ class scanner extends \core\antivirus\scanner {
             $this->set_scanning_notice($notice);
             return self::SCAN_RESULT_ERROR;
         } else {
+            // Set the socket transaction timeout value.
+            stream_set_timeout($socket,  get_config('antivirus_clamav', 'socketrwtimeout'));
             if ($type == "unixsocket") {
                 // Execute scanning. We are running SCAN command and passing file as an argument,
                 // it is the fastest option, but clamav user need to be able to access it, so
@@ -349,6 +351,8 @@ class scanner extends \core\antivirus\scanner {
             $this->set_scanning_notice($notice);
             return self::SCAN_RESULT_ERROR;
         } else {
+            // Set the socket transaction timeout value.
+            stream_set_timeout($socket, get_config('antivirus_clamav', 'socketrwtimeout'));
             // Initiate data stream scanning.
             // Using 'n' as command prefix is forcing clamav to only treat \n as newline delimeter,
             // this is to avoid unexpected newline characters on different systems.

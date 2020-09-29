@@ -58,6 +58,11 @@ if ($ADMIN->fulltree) {
             new lang_string('tcpsocketport', 'antivirus_clamav'),
             new lang_string('tcpsocketportdesc', 'antivirus_clamav'), 3310, PARAM_INT));
 
+    // Time for socket to wait on a TCP Stream Socket Read request after a file has been submitted for scanning.
+    $settings->add(new admin_setting_configtext('antivirus_clamav/socketrwtimeout',
+            new lang_string('socketrwtimeout', 'antivirus_clamav'),
+            new lang_string('socketrwtimeoutdesc', 'antivirus_clamav'), 180, PARAM_INT));
+
     // How to act on ClamAV failure.
     $options = array(
         'donothing' => new lang_string('configclamdonothing', 'antivirus_clamav'),
